@@ -96,7 +96,6 @@ class Todo_Public {
 		 * class.
 		 */
 
-		$admin_ajax_url = admin_url( 'admin-ajax.php', is_ssl() ? 'https://' : 'http://' );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/todo-init.js', array( 'jquery' ), $this->version, false );
 		$admin_ajax_url = admin_url( 'admin-ajax.php', is_ssl() ? 'https://' : 'http://' );  
 		wp_localize_script( $this->plugin_name, 'ajaxOptions', array('adminAjaxUrl' => $admin_ajax_url) );  
