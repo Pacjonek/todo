@@ -41,27 +41,15 @@ class Todo_Public {
 	private $version;
 
 	/**
-	 * The URL location of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $plugin_url_location;
-
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $plugin_url_location       The URL location of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->plugin_url_location = plugin_dir_url(dirname(__FILE__));
 		$this->version = $version;
 
 	}
@@ -114,9 +102,6 @@ class Todo_Public {
 		wp_localize_script( $this->plugin_name, 'ajaxOptions', array('adminAjaxUrl' => $admin_ajax_url) );  
 	}
 
-	public function get_plugin_url_location(){
-		return $this->plugin_url_location;
-	}
 	public function register_todo_shortcode(){
 		add_shortcode( 'todo', array($this, 'todo_logged_in_shortcode'));
 	}
@@ -126,19 +111,15 @@ class Todo_Public {
 			$this->show_todo();
 		}
 	}
-
 	public function show_todo(){
 		add_action( 'wp_enqueue_scripts', $this, 'enqueue_styles' );
-		$plugin_url_location = $this->get_plugin_url_location();
 		require(plugin_dir_path( __FILE__ ) . '/partials/todo-public-display.php');
 	}
-
 	public function get_todo_tasks() {
 		$tasks = get_user_meta(get_current_user_id(),'todo_tasks', true);
 		if($tasks) echo json_encode($tasks);
 		exit;
 	}
-	
 	public function update_todo_tasks() {
 		if(isset($_POST['data'])){
 			$tasks = $_POST['data'];
@@ -146,5 +127,4 @@ class Todo_Public {
 			exit;
 		}
 	}
-
 }
