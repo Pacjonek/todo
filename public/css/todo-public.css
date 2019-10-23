@@ -1,0 +1,40 @@
+ .todo{
+    font-family:'Open Sans', sans-serif;
+    font-size:12px;
+    max-width:220px;
+    border:1px solid #f3f3f3
+}
+.todo-task__list{
+    padding:0;
+    margin:0;
+    list-style:none;
+    text-align:center;
+    transition:0.4s;
+    opacity:0
+}
+.todo-task__list.loaded{
+    opacity:1
+}
+.todo-task{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #f3f3f3;
+}
+.todo-task--new{
+    background-color:#f3f3f3;
+}
+.todo-task__job{
+    background-color:transparent;
+    border:none;
+    padding:0.5rem;
+    width:100%;
+    outline:none;
+    border-left:4px double #f6ece9;
+    font-weight:600
+}
+.todo-task__done-outer{
+    padding:0 0.5rem
+}
+.todo-task__done{
+    display:block
+}
